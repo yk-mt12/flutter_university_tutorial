@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_university_tutorial/next_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,20 +39,27 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  String text = '次へ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: Text('kitsune flutter app'),
           actions: <Widget>[Icon(Icons.add), Icon(Icons.share)]),
-      body: Container(
-        width: double.infinity,
-        color: Colors.red,
-        child: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Row(
-            children: <Widget>[Text('Hello'), Text('Hello')],
-          ),
+      body: Center(
+        child: OutlinedButton(
+         child: Text(text),
+          onPressed: () async{
+           final result = await Navigator.push(
+             context,
+             MaterialPageRoute(
+                 builder: (context) => NextPage('Kitsune')
+             ),
+           );
+           text = result;
+           print(result);
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
