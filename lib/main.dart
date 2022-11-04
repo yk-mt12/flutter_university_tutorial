@@ -39,6 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  String text = '次へ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: <Widget>[Icon(Icons.add), Icon(Icons.share)]),
       body: Center(
         child: OutlinedButton(
-         child: Text('次へ'),
+         child: Text(text),
           onPressed: () async{
            final result = await Navigator.push(
              context,
@@ -55,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                  builder: (context) => NextPage('Kitsune')
              ),
            );
+           text = result;
            print(result);
           },
         ),
